@@ -52,7 +52,6 @@ const UserList = ( props: UserListProps ) => {
 						item    : classes.accordionItem,
 						control : classes.accordionControl
 					} }
-					defaultValue = "archived"
 					my = { 16 }
 				>
 					<Accordion.Item
@@ -95,7 +94,6 @@ const UserList = ( props: UserListProps ) => {
 
 				<Stack>
 					<Text
-						color = "gray"
 						title = "Pinned"
 						weight = { 500 }
 					/>
@@ -114,7 +112,6 @@ const UserList = ( props: UserListProps ) => {
 
 				<Stack>
 					<Text
-						color = "gray"
 						title = "All Chats"
 						weight = { 500 }
 					/>

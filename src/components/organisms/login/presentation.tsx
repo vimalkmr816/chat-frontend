@@ -1,23 +1,31 @@
 import Text from "@/components/atoms/text";
 import {
+	Anchor,
 	Button,
+	Center,
 	Checkbox,
 	Container,
 	Group,
 	Paper,
 	PasswordInput,
-	Stack,
 	TextInput,
 	Title
 } from "@mantine/core";
 import { MantineTheme } from "@mantine/core/lib";
 import { useRouter }    from "next/router";
+import { LoginProps }   from "./types";
 
-export default function () {
+export default function ( props: LoginProps ) {
+
+	const {
+		form,
+		handleLogin
+	} = props;
 	const router = useRouter ();
 
 	return (
-		<Container my = { 40 }
+		<Container
+			my = { 40 }
 			size = { 420 }
 		>
 			<Title
@@ -56,43 +64,30 @@ export default function () {
 				/>
 			</Group>
 
-			<Paper withBorder
-				mt = { 30 }
-				p = { 30 }
-				radius = "md"
-				shadow = "md"
-			>
-				<Stack spacing = { 16 }>
-					<Group
-						grow
-						spacing = { 16 }
-					>
-						<TextInput
-							required
-							label = "First Name"
-							placeholder = "firstname"
-						/>
+			<form onSubmit = { form.onSubmit ( values => handleLogin ( values ) ) }>
 
-						<TextInput
-							required
-							label = "Last Name"
-							placeholder = "lastname"
-						/>
-					</Group>
-
-					<TextInput
-						required
+				<Paper withBorder
+					mt = { 30 }
+					p = { 30 }
+					radius = "md"
+					shadow = "md"
+				>
+					<TextInput required
 						label = "Email"
-						placeholder = "youremail@gmail.com"
+						{ ...form.getInputProps ( "email" ) }
+						placeholder = "you@mantine.dev"
 					/>
 
-					<PasswordInput
-						required
+					<PasswordInput required
 						label = "Password"
+						{ ...form.getInputProps ( "password" ) }
+						mt = "md"
 						placeholder = "Your password"
 					/>
 
-					<Group position = "apart">
+					<Group mt = "lg"
+						position = "apart"
+					>
 						<Checkbox label = "Remember me" />
 
 						<Text
@@ -115,11 +110,12 @@ export default function () {
 						fullWidth
 						color = "blue"
 						mt = "xl"
+						type = "submit"
 					>
 						Sign in
 					</Button>
-				</Stack>
-			</Paper>
+				</Paper>
+			</form>
 		</Container>
 	);
 }

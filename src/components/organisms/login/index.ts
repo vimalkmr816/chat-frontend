@@ -1,3 +1,3 @@
-import Login from "./container";
+import Signup from "./container";
 
-export default Login;
+export default Signup;

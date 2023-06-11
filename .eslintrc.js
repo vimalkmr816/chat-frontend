@@ -165,9 +165,9 @@ module.exports = {
 				code : 160
 			}
 		],
-		"no-console" : [
+		/* "no-console" : [
 			2
-		],
+		], */
 		"block-spacing" : "error",
 		"brace-style"   : [
 			"error",

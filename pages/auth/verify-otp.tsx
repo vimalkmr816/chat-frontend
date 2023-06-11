@@ -1,13 +1,11 @@
-import { getSession, withAuth }      from "@/common/utils";
-import { GetServerSidePropsContext } from "next";
-import { Inter }                     from "next/font/google";
 
-const inter = Inter ( { subsets : [ "latin" ] } );
+import { withAuth }                  from "@/common/utils";
+import VerifyOtp                     from "@/components/organisms/verifyOtp";
+import { GetServerSidePropsContext } from "next";
 
 export default function Home () {
-
 	return (
-		<div>vimal</div>
+		<VerifyOtp />
 	);
 }
 

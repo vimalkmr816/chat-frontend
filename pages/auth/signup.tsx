@@ -1,15 +1,15 @@
-import { getSession, withAuth }      from "@/common/utils";
+import { withAuth }                  from "@/common/utils";
+import Signup                        from "@/components/organisms/signup";
 import { GetServerSidePropsContext } from "next";
-import { Inter }                     from "next/font/google";
 
-const inter = Inter ( { subsets : [ "latin" ] } );
-
-export default function Home () {
+const component = () => {
 
 	return (
-		<div>vimal</div>
+		<Signup />
 	);
-}
+};
+
+export default component;
 
 export const getServerSideProps = async ( context: GetServerSidePropsContext ) =>
 	withAuth ( context, async ( ctx: GetServerSidePropsContext ) => {

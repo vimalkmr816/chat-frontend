@@ -1,13 +1,10 @@
 import { getSession, withAuth }      from "@/common/utils";
+import Login                         from "@/components/organisms/login";
 import { GetServerSidePropsContext } from "next";
-import { Inter }                     from "next/font/google";
-
-const inter = Inter ( { subsets : [ "latin" ] } );
 
 export default function Home () {
-
 	return (
-		<div>vimal</div>
+		<Login />
 	);
 }
 
@@ -21,4 +18,5 @@ export const getServerSideProps = async ( context: GetServerSidePropsContext ) =
 		return {
 			props : {}
 		};
-	} );
+	}
+	);

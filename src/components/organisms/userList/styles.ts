@@ -19,7 +19,7 @@ export default createStyles ( theme => {
 		},
 		accordionLabel : {
 			display    : "flex",
-			padding    : "0.5rem 1rem",
+			padding    : "0.3rem 0.2rem",
 			gap        : "0.4rem",
 			alignItems : "center"
 		},

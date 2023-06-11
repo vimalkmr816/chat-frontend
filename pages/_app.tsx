@@ -36,24 +36,6 @@ export default function App ( { Component, pageProps }: AppProps ) {
 
 	const toggleColorScheme = ( value?: ColorScheme ) => setColorScheme ( value || ( colorScheme === "dark" ? "light" : "dark" ) );
 
-	const isLoggedIn = true;
-	const router     = useRouter ();
-
-	useEffect ( () => {
-		if ( !isLoggedIn )
-			router.push ( {
-				pathname : route.auth.login
-			} );
-		else
-			router.push ( {
-				pathname : route.home
-			} );
-	}, [ isLoggedIn ] );
-
-	const handleOpenSearch = () => {
-
-	};
-
 	return (
 		<ColorSchemeProvider
 			colorScheme = { colorScheme }
@@ -77,7 +59,7 @@ export default function App ( { Component, pageProps }: AppProps ) {
 				>
 
 					{
-						isLoggedIn
+						pageProps.isLoggedIn
 							? (
 								<Flex>
 									<Sidebar />

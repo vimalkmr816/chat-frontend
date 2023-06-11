@@ -1,16 +1,12 @@
-import { getSession, withAuth }      from "@/common/utils";
+import { withAuth }                  from "@/common/utils";
+import ForgotPassword                from "@/components/organisms/forgotPassword";
 import { GetServerSidePropsContext } from "next";
-import { Inter }                     from "next/font/google";
-
-const inter = Inter ( { subsets : [ "latin" ] } );
 
 export default function Home () {
-
 	return (
-		<div>vimal</div>
+		<ForgotPassword />
 	);
 }
-
 export const getServerSideProps = async ( context: GetServerSidePropsContext ) =>
 	withAuth ( context, async ( ctx: GetServerSidePropsContext ) => {
 		ctx.res.setHeader (

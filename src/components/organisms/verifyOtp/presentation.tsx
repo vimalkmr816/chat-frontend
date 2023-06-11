@@ -2,31 +2,25 @@ import { route } from "@/common/constants";
 import Text      from "@/components/atoms/text";
 import {
 	Button,
-	Checkbox,
 	Container,
 	Flex,
 	Group,
 	Paper,
-	PasswordInput,
 	PinInput,
 	Stack,
-	TextInput,
 	Title
 } from "@mantine/core";
-import { MantineTheme }        from "@mantine/core/lib";
-import { useRouter }           from "next/router";
-import { useEffect, useState } from "react";
+import { MantineTheme }   from "@mantine/core/lib";
+import { useRouter }      from "next/router";
+import { VerifyOtpProps } from "./types";
 
-export default function () {
-	const router          = useRouter ();
-	const [ pin, setPin ] = useState ( "" );
-
-	useEffect ( () => {
-
-		if ( pin.length === 6 ) {
-			// console.log ( pin );
-		}
-	}, [ pin ] );
+export default function ( props: VerifyOtpProps ) {
+	const {
+		handleVerifyPin,
+		pin,
+		setPin
+	} = props;
+	const router = useRouter ();
 
 	return (
 		<Container my = { 40 }
@@ -102,6 +96,7 @@ export default function () {
 					<Button
 						fullWidth
 						color = "blue"
+						onClick = { () => handleVerifyPin ( pin ) }
 					>
 						Verify
 					</Button>

@@ -1,21 +1,26 @@
-import Text from "@/components/atoms/text";
+import Text                 from "@/components/atoms/text";
+import { PasswordStrength } from "@/components/molecules/passwordStrengthInput/presentation";
 import {
-	Anchor,
 	Button,
-	Center,
 	Checkbox,
 	Container,
 	Group,
 	Paper,
 	PasswordInput,
+	Stack,
 	TextInput,
 	Title
 } from "@mantine/core";
 import { MantineTheme } from "@mantine/core/lib";
 import { useRouter }    from "next/router";
+import { SignUpProps }  from "./types";
 
-export default function () {
+export default function ( props: SignUpProps ) {
 	const router = useRouter ();
+	const {
+		form,
+		handleSignup
+	} = props;
 
 	return (
 		<Container my = { 40 }
@@ -57,52 +62,77 @@ export default function () {
 				/>
 			</Group>
 
-			<Paper withBorder
-				mt = { 30 }
-				p = { 30 }
-				radius = "md"
-				shadow = "md"
-			>
-				<TextInput required
-					label = "Email"
-					placeholder = "you@mantine.dev"
-				/>
-
-				<PasswordInput required
-					label = "Password"
-					mt = "md"
-					placeholder = "Your password"
-				/>
-
-				<Group mt = "lg"
-					position = "apart"
+			<form onSubmit = { form.onSubmit ( values => handleSignup ( values ) ) }>
+				<Paper withBorder
+					mt = { 30 }
+					p = { 30 }
+					radius = "md"
+					shadow = "md"
 				>
-					<Checkbox label = "Remember me" />
+					<Stack spacing = { 16 }>
+						<Group
+							grow
+							spacing = { 16 }
+						>
+							<TextInput
+								required
+								label = "First Name"
+								placeholder = "firstname"
+								{ ...form.getInputProps ( "firstName" ) }
+							/>
 
-					<Text
-						isLink
-						span
-						color = "blue"
-						fw = { "normal" }
-						onClick = { () => router.push ( {
-							pathname : "forgot-password"
-						} ) }
-						p = { 0 }
-						size = "sm"
-						title = { "Forgot password?" }
-						variant = "default"
-					/>
+							<TextInput
+								required
+								label = "Last Name"
+								placeholder = "lastname"
+								{ ...form.getInputProps ( "lastName" ) }
+							/>
+						</Group>
 
-				</Group>
+						<TextInput
+							required
+							label = "Email"
+							placeholder = "youremail@gmail.com"
+							{ ...form.getInputProps ( "email" ) }
+							type = "email"
+						/>
 
-				<Button
-					fullWidth
-					color = "blue"
-					mt = "xl"
-				>
-					Sign in
-				</Button>
-			</Paper>
+						<PasswordInput
+							required
+							{ ...form.getInputProps ( "password" ) }
+							label = "Password"
+							placeholder = "Your password"
+						/>
+
+						<Group position = "right">
+							{/* <Checkbox label = "Remember me" /> */}
+
+							<Text
+								isLink
+								span
+								color = "blue"
+								fw = { "normal" }
+								onClick = { () => router.push ( {
+									pathname : "forgot-password"
+								} ) }
+								p = { 0 }
+								size = "sm"
+								title = { "Forgot password?" }
+								variant = "default"
+							/>
+
+						</Group>
+
+						<Button
+							fullWidth
+							color = "blue"
+							type = "submit"
+						>
+							Sign in
+						</Button>
+					</Stack>
+				</Paper>
+			</form>
 		</Container>
 	);
 }

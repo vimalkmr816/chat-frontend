@@ -2,10 +2,10 @@ import { ChatList, SidebarUser } from "./types";
 
 export const route = {
 	auth : {
-		login          : "login",
-		signUp         : "signup",
-		forgotPassword : "forgot-password",
-		verifyOTP      : "verify-otp"
+		login          : "/auth/login",
+		signUp         : "/auth/signup",
+		forgotPassword : "/auth/forgot-password",
+		verifyOTP      : "/auth/verify-otp"
 	},
 	home : "/"
 };

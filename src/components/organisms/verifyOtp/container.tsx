@@ -1,3 +1,4 @@
+import { route }                      from "@/common/constants";
 import axios                          from "axios";
 import Cookies                        from "js-cookie";
 import { cookies }                    from "next/headers";
@@ -31,6 +32,9 @@ const component = ( ) => {
 			} );
 
 			Cookies.set ( "token", response.data.token, { expires : 30 } );
+			router.push ( {
+				pathname : route.home
+			} );
 		} catch ( error ) {
 			console.log ( error );
 		}

@@ -1,4 +1,8 @@
-import { getSession, withAuth }      from "@/common/utils";
+import { data }                      from "@/common/constants";
+import { withAuth }                  from "@/common/utils";
+import Sidebar                       from "@/components/organisms/sidebar";
+import UserList                      from "@/components/organisms/userList";
+import { Flex }                      from "@mantine/core";
 import { GetServerSidePropsContext } from "next";
 import { Inter }                     from "next/font/google";
 
@@ -7,7 +11,14 @@ const inter = Inter ( { subsets : [ "latin" ] } );
 export default function Home () {
 
 	return (
-		<div>vimal</div>
+		<Flex>
+			<Sidebar />
+
+			<UserList
+				data = { data }
+			/>
+
+		</Flex>
 	);
 }
 
@@ -19,6 +30,7 @@ export const getServerSideProps = async ( context: GetServerSidePropsContext ) =
 		);
 
 		return {
-			props : {}
+			props : {
+			}
 		};
 	} );

@@ -3,8 +3,6 @@ import { GetServerSideProps, GetServerSidePropsContext } from "next";
 export const getSession = ( ctx: GetServerSidePropsContext ) => {
 	const cookies = ctx.req.headers.cookie;
 
-	// console.log ( "========  cookies:", cookies && JSON.parse ( cookies ) );
-
 	if ( cookies ) {
 		try {
 			const parsedCookies: Record<string, string> = cookies.split ( ";" ).reduce ( ( acc, cookie ) => {
@@ -28,7 +26,6 @@ export const withAuth = async ( context: GetServerSidePropsContext, fn: GetServe
 
 	const session = getSession ( context );
 
-	console.log ( "========  :", session?.token && context.resolvedUrl.includes ( "/auth/" ) );
 	if ( session?.token && context.resolvedUrl.includes ( "/auth/" ) ) {
 		return {
 			redirect : {

@@ -8,7 +8,7 @@ import { Fragment }                                                           fr
 import useStyles                                                              from "./styles";
 import { UserListProps }                                                      from "./types";
 
-const UserList = ( props: UserListProps ) => {
+const component = ( props: UserListProps ) => {
 	const {
 		data
 	} = props;
@@ -132,4 +132,4 @@ const UserList = ( props: UserListProps ) => {
 	);
 };
 
-export default UserList;
+export default component;

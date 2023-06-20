@@ -1,13 +1,8 @@
-import { data, route }                                                                    from "@/common/constants";
-import { ActionToggle }                                                                   from "@/components/atoms/toggleTheme";
-import Sidebar                                                                            from "@/components/organisms/sidebar";
-import UserList                                                                           from "@/components/organisms/userList/presentation";
 import { ColorScheme, ColorSchemeProvider, Flex, MantineProvider, useMantineColorScheme } from "@mantine/core";
 import { SpotlightAction, SpotlightProvider }                                             from "@mantine/spotlight";
 import { IconDashboard, IconFileText, IconHome, IconSearch }                              from "@tabler/icons-react";
 import type { AppProps }                                                                  from "next/app";
-import { useRouter }                                                                      from "next/router";
-import { useEffect, useState }                                                            from "react";
+import { useState }                                                                       from "react";
 
 const actions: SpotlightAction[] = [
 	{
@@ -38,7 +33,7 @@ export default function App ( { Component, pageProps }: AppProps ) {
 
 	return (
 		<ColorSchemeProvider
-			colorScheme = { colorScheme }
+			colorScheme = { "dark" }
 			toggleColorScheme = { toggleColorScheme }
 		>
 			<MantineProvider
@@ -58,21 +53,7 @@ export default function App ( { Component, pageProps }: AppProps ) {
 					shortcut = "mod + shift + o"
 				>
 
-					{
-						pageProps.isLoggedIn
-							? (
-								<Flex>
-									<Sidebar />
-
-									<UserList
-										data = { data }
-									/>
-
-									<Component { ...pageProps } />
-								</Flex>
-							)
-							: <Component { ...pageProps } />
-					}
+					<Component { ...pageProps } />
 				</SpotlightProvider>
 			</MantineProvider>
 		</ColorSchemeProvider>

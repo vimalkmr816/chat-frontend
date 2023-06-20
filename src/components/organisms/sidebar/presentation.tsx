@@ -1,4 +1,5 @@
-import { Center, MantineSizes, Navbar, Stack, Tooltip, UnstyledButton, createStyles, rem } from "@mantine/core";
+import { route }                                                     from "@/common/constants";
+import { Navbar, Stack, Tooltip, UnstyledButton, createStyles, rem } from "@mantine/core";
 import {
 	IconCalendarStats,
 	IconDeviceDesktopAnalytics,
@@ -10,7 +11,9 @@ import {
 	IconSwitchHorizontal,
 	IconUser
 } from "@tabler/icons-react";
-import { useState } from "react";
+import Cookies       from "js-cookie";
+import { useRouter } from "next/router";
+import { useState }  from "react";
 
 const useStyles = createStyles ( theme => ( {
 	link : {
@@ -75,6 +78,14 @@ const mockdata = [
 export default function () {
 	const [ active, setActive ] = useState ( 2 );
 
+	const router       = useRouter ();
+	const handleLogout = () => {
+		Cookies.remove ( "token" );
+		router.push ( {
+			pathname : route.auth.login
+		} );
+	};
+
 	const links = mockdata.map ( ( link, index ) => (
 		<NavbarLink
 			{ ...link }
@@ -107,8 +118,10 @@ export default function () {
 						label = "Change account"
 					/>
 
-					<NavbarLink icon = { IconLogout }
+					<NavbarLink
+						icon = { IconLogout }
 						label = "Logout"
+						onClick = { () => handleLogout () }
 					/>
 				</Stack>
 			</Navbar.Section>
